@@ -7,7 +7,7 @@ export class Operation {
     this.rider = rider;
   }
 
-  assingADriver() {
-    return this.rider.assignADriver();
+  assingADriver(params) {
+    return this.rider.assignADriver(params);
   }
 }

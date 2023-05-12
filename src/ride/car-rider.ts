@@ -5,9 +5,9 @@ import { UserService } from '../user/services/user/user.service';
 export class CarRider implements IRider {
   constructor(@Inject(UserService) private userService: UserService) {}
 
-  async assignADriver() {
-    const drivers = await this.userService.getDrivers({ type: 'driver' });
-
+  async assignADriver(params) {
+    const parameters = { type: 'driver' };
+    const drivers = await this.userService.getDrivers(parameters);
     return drivers;
   }
 

@@ -1,4 +1,4 @@
 export interface IRider {
-  assignADriver();
+  assignADriver(params);
   startARide();
 }

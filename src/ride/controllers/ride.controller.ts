@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Res } from '@nestjs/common';
 import { CarRider } from '../car-rider';
 import { Operation } from '../operation';
 import { Response } from 'express';
@@ -8,10 +8,14 @@ export class RideController {
   constructor(private carRider: CarRider) {}
 
   @Get('assign-driver')
-  async getAssignDriver(@Res() res: Response) {
+  async getAssignDriver(@Query() params, @Res() res: Response) {
     const carRider = this.carRider;
     const operation = new Operation(carRider);
-    const data = await operation.assingADriver();
+    const parameters = {
+      latitude: params.latitude,
+      longitude: params.longitude,
+    };
+    const data = await operation.assingADriver(parameters);
 
     return res.status(HttpStatus.OK).json({
       status: 'success',
